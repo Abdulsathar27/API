@@ -13,7 +13,8 @@ class _ProfileViewState extends State<ProfileView> {
   void initState() {
     super.initState();
     Future.microtask((){
-      context.read<AuthController>().loadprofile();
+      // ignore: use_build_context_synchronously
+      context.read<AuthController>().loadProfile();
     });
   }
   @override
@@ -21,7 +22,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(title:const Text('profile')),
       body: Consumer<AuthController>(builder:(context,controller,_){
-        if(controller.isLoading){
+        if(controller.isProfileLoading){
           return const Center(child: CircularProgressIndicator(),);
         }
         if(controller.profile == null){
